@@ -2,11 +2,138 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MVVMCalculator.View.Calculator">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  
+                    Android="10" />
+    </ContentPage.Padding>
+
+    <Grid x:Name="mainGrid">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollView Grid.Row="0" Grid.Column="0" Padding="5, 0">
+            <Label Text="{Binding HistoryString}" />
+        </ScrollView>
+
+        <Grid x:Name="keypadGrid" 
+              Grid.Row="1" Grid.Column="0" 
+              RowSpacing="2" ColumnSpacing="2" 
+              WidthRequest="340"
+              HeightRequest="360"
+              VerticalOptions="Center"
+              HorizontalOptions="Center">
+            
+            <Grid.Resources>
+                <ResourceDictionary>
+                    
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" 
+                                Value="Large" />
+                        <Setter Property="BorderWidth" 
+                                Value="1" />
+                    </Style>
+                    
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <Label Text="{Binding CurrentEntry}" 
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" 
+                   FontSize="Large" LineBreakMode="HeadTruncation" 
+                   TextDecorations="Underline"
+                   VerticalOptions="Center" 
+                   HorizontalTextAlignment="End" />
+            
+            <Button Text="C" 
+                    Grid.Row="4" Grid.Column="3" 
+                    Command="{Binding ClearCommand}" 
+                    Background="Orange" />
+            
+            <Button Text="CE" 
+                    Grid.Row="3" Grid.Column="3" 
+                    Command="{Binding ClearEntryCommand}" 
+                    Background="Orange" />
+
+            <Button Text="&#8592;" 
+                    FontSize="Large"
+                    Grid.Row="2" Grid.Column="0" 
+                    Grid.ColumnSpan="3" 
+                    Command="{Binding BackspaceCommand}" 
+                    Background="Orange" />
+            
+            <Button Text="+" 
+                    Grid.Row="2" Grid.Column="3"  
+                    Command="{Binding AddCommand}" 
+                    Background="Orange"/>
+            
+            
+            <Button Text="1" 
+                    Grid.Row="3" Grid.Column="0" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="1" 
+                    Background="#C0C0C0" />
+            
+            <Button Text="2" 
+                    Grid.Row="3" Grid.Column="1" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="2" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="3" 
+                    Grid.Row="3" Grid.Column="2" 
+                    Command="{Binding NumericCommand}"
+                    CommandParameter="3" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="4" 
+                    Grid.Row="4" Grid.Column="0" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="4" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="5" 
+                    Grid.Row="4" Grid.Column="1" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="5" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="6" 
+                    Grid.Row="4" Grid.Column="2" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="6" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="7" 
+                    Grid.Row="5" Grid.Column="0" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="7" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="8" 
+                    Grid.Row="5" Grid.Column="1" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="8" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="9" 
+                    Grid.Row="5" Grid.Column="2" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="9" 
+                    Background="#C0C0C0"/>
+            
+            <Button Text="0" 
+                    Grid.Row="5" Grid.Column="3" 
+                    Grid.ColumnSpan="1" 
+                    Command="{Binding NumericCommand}" 
+                    CommandParameter="0" 
+                    Background="Orange"/>
+        </Grid>
+    </Grid>
 </ContentPage>

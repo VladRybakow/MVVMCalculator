@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MVVMCalculator.Model;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MVVMCalculator.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Calculator : ContentPage
     {
-        public Calculator()
+        public Calculator(CalculatorModel model)
         {
             InitializeComponent();
+
+            BindingContext = model;
         }
     }
 }
